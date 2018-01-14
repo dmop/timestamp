@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const fs = require('fs');
+const port = process.env.PORT || 8080;
 // create express app
-var app = express();
+const app = express();
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -11,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use(morgan('tiny'));
-
 
 // define a simple route
 app.get('/', function (req, res) {
@@ -23,6 +23,6 @@ app.get('/', function (req, res) {
 require('./routes/routes.js')(app);
 
 // listen for requests
-app.listen(3000, function () {
-    console.log("Server is listening on port 3000");
+app.listen(port, function () {
+    console.log("Server is listening on port "+port);
 });
